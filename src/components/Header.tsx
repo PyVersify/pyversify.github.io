@@ -24,7 +24,7 @@ const baseLinks = [
 const Header: React.FC<HeaderProps> = ({ fontLoaded, smallLogo }) => {
   const location = useLocation();
   const [openMenuId, setOpenMenuId] = React.useState<string | null>(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -70,6 +70,7 @@ const Header: React.FC<HeaderProps> = ({ fontLoaded, smallLogo }) => {
     <header className="bg-[#4584b6] text-white sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4">
         <nav className="flex items-center justify-between">
+          <a href="https://pyversify.github.io/">
           <div className="flex items-center space-x-2">
             <img src={smallLogo} alt="PyVersify Logo" className="h-8 w-8" />
             <span
@@ -82,6 +83,7 @@ const Header: React.FC<HeaderProps> = ({ fontLoaded, smallLogo }) => {
               py versify
             </span>
           </div>
+          </a>
 
           {/* Hamburger Menu Button */}
           <button

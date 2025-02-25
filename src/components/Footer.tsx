@@ -13,9 +13,9 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-    { name: 'Slack', icon: faSlack, url: '#' },
-    { name: 'GitHub', icon: faGithub, url: '#' },
-    { name: 'Discord', icon: faDiscord, url: '#' },
+    { name: 'Slack', icon: faSlack, url: 'https://join.slack.com/t/pyversify/shared_invite/zt-30pj6eabl-kngRVFSFRh~qLmEm8qgvdQ' },
+    { name: 'GitHub', icon: faGithub, url: 'https://github.com/PyVersify' },
+    { name: 'Discord', icon: faDiscord, url: 'https://discord.gg/ShD396pYT8' },
     { name: 'Mastodon', icon: faMastodon, url: '#' }
 ];
 
@@ -27,10 +27,12 @@ const Footer: React.FC = () => {
                 <div className="py-16 md:py-20 mx-auto w-full max-w-7xl px-5 md:px-10">
                     <div className="flex-col flex items-center">
                         {/* Footer Logo */}
-                        <div className="flex items-center space-x-2 mb-4 md:mb-0 pb-10">
-                            <img src={smallLogo} className='h-9 w-9'/>
-                            <span className="text-3xl font-bold">py versify</span>
-                        </div>
+                        <a href="https://pyversify.github.io">
+                            <div className="flex items-center space-x-2 mb-4 md:mb-0 pb-10">
+                                <img src={smallLogo} className='h-9 w-9'/>
+                                <span className="text-3xl font-bold">py versify</span>
+                            </div>
+                        </a>    
                         
                         {/* Footer Links */}
                         <div className="text-center font-semibold">
