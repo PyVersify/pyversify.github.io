@@ -22,7 +22,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <div className="min-h-screen bg-gray-300 flex flex-col">
         {/* Header */}
         <Header fontLoaded={fontLoaded} smallLogo={smallLogo} />
