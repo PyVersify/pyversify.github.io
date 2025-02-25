@@ -24,6 +24,7 @@ const baseLinks = [
 const Header: React.FC<HeaderProps> = ({ fontLoaded, smallLogo }) => {
   const location = useLocation();
   const [openMenuId, setOpenMenuId] = React.useState<string | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -41,6 +42,11 @@ const Header: React.FC<HeaderProps> = ({ fontLoaded, smallLogo }) => {
     e.stopPropagation();
     setOpenMenuId(openMenuId === menuId ? null : menuId);
   };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setOpenMenuId(null);
+  }
 
   const getFilteredChildren = (children: Array<{ name: string; path: string }>) => {
     return children.filter(child => child.path !== location.pathname);
@@ -76,6 +82,38 @@ const Header: React.FC<HeaderProps> = ({ fontLoaded, smallLogo }) => {
               py versify
             </span>
           </div>
+
+          {/* Hamburger Menu Button */}
+          <button
+            className="md:hidden p-2 rounded-lg hover:bg-[#3a719b] transition-colors"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              {isMobileMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+          
+          {/* Regular Menu */}
           <div className="hidden md:flex space-x-8">
             {headerLinks.map((link, index) => (
               link.children ? (
@@ -143,6 +181,76 @@ const Header: React.FC<HeaderProps> = ({ fontLoaded, smallLogo }) => {
                 </Link>
               )
             ))}
+          </div>
+
+          {/* Mobile Menu */}
+          <div
+            className={`${
+              isMobileMenuOpen ? 'block' : 'hidden'
+            } absolute top-full left-0 right-0 bg-[#4584b6] md:hidden shadow-lg`}
+          >
+            <div className="px-4 py-2">
+              {location.pathname !== '/' && (
+                <Link
+                  to="/"
+                  className="block py-2 px-4 text-white hover:text-[#ffde57] transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+              )}
+              {baseLinks.map((link, index) => (
+                <div key={index}>
+                  {link.children ? (
+                    <div className="relative">
+                      <button
+                        onClick={(e) => handleMenuClick(link.name, e)}
+                        className="w-full flex items-center justify-between py-2 px-4 text-white hover:text-[#ffde57] transition-colors"
+                      >
+                        {link.name}
+                        <svg
+                          className={`w-4 h-4 transform transition-transform ${
+                            openMenuId === link.name ? 'rotate-180' : ''
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+                      {openMenuId === link.name && (
+                        <div className="bg-[#3a719b] py-1">
+                          {link.children.map((child, childIndex) => (
+                            <Link
+                              key={childIndex}
+                              to={child.path}
+                              className="block py-2 px-8 text-white hover:text-[#ffde57] transition-colors"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <a
+                      href={link.path}
+                      className="block py-2 px-4 text-white hover:text-[#ffde57] transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </nav>
       </div>
