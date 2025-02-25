@@ -39,3 +39,8 @@
 header {
   font-family: Flux, sans-serif;
 }
+
+html,
+body {
+  height: 100%;
+}
