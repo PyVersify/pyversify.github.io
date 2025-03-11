@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Calendar from './Calendar';
+import CustomCalendar from './Calendar';
 import UpcomingEvents from './UpcomingEvents';
 import { fetchEvents } from '../utils/events';
 
@@ -21,7 +21,7 @@ const Community: React.FC = () => {
       <p className="text-xl text-gray-600">
         Welcome to the community page! Here you can find information about our community events, forums, and how to get involved.
       </p>
-      <Calendar events={events} />
+      <CustomCalendar events={events} />
       <UpcomingEvents events={events} />
     </div>
   );
