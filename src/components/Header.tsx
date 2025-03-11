@@ -16,9 +16,9 @@ const baseLinks = [
             { name: 'FAQ', path: '/faq' },
         ]
     },
-    { name: 'Community', path: '#community' },
-    { name: 'Resources', path: '#resources' },
-    { name: 'Join Us', path: '#join' }
+    { name: 'Community', path: '/community' },
+    { name: 'Resources', path: '/resources' },
+    { name: 'Join Us', path: '/join' }
 ]
 
 const Header: React.FC<HeaderProps> = ({ fontLoaded, smallLogo }) => {

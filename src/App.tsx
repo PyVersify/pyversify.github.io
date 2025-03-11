@@ -8,6 +8,13 @@ import MissionStatement from './components/MissionStatement';
 import FAQ from './components/FAQ';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
+import Community from './components/Community';
+import Resources from './components/Resources';
+import Join from './components/Join';
+import Features from './components/Features';
+import Works from './components/Works';
+import Support from './components/Support';
+import Help from './components/Help';
 
 import smallLogo from './assets/images/logo_32x32.png';
 
@@ -34,6 +41,13 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/mission-statement" element={<MissionStatement /> } />
             <Route path="/faq" element={<FAQ openFaq={openFaq} setOpenFaq={setOpenFaq} />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/join" element={<Join />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/works" element={<Works />} />
+            <Route path="/support" element={<Support />} />
+            <Route path="/help" element={<Help />} />
           </Routes>
         </main>
 
