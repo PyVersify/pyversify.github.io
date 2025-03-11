@@ -1,5 +1,6 @@
 import React from 'react';
-import Calendar from 'react-calendar';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 interface Event {
   date: string;
@@ -11,18 +12,28 @@ interface CalendarProps {
 }
 
 const CustomCalendar: React.FC<CalendarProps> = ({ events }) => {
-  const tileContent = ({ date, view }: { date: Date; view: string }) => {
-    if (view === 'month') {
-      const event = events.find(event => new Date(event.date).toDateString() === date.toDateString());
-      return event ? <div className="calendar-event">{event.title}</div> : null;
-    }
-    return null;
+  const eventContent = (eventInfo: any) => {
+    return (
+      <div className="calendar-event">
+        {eventInfo.event.title}
+      </div>
+    );
   };
+
+  const eventsList = events.map(event => ({
+    title: event.title,
+    start: event.date
+  }));
 
   return (
     <div className="container mx-auto px-6 py-24 bg-white m-10">
       <div className="calendar-container">
-        <Calendar tileContent={tileContent} />
+        <FullCalendar
+          plugins={[dayGridPlugin]}
+          initialView="dayGridMonth"
+          events={eventsList}
+          eventContent={eventContent}
+        />
       </div>
     </div>  
   );
