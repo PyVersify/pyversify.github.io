@@ -20,9 +20,11 @@ const CustomCalendar: React.FC<CalendarProps> = ({ events }) => {
   };
 
   return (
-    <div className="calendar-container">
-      <Calendar tileContent={tileContent} />
-    </div>
+    <div className="container mx-auto px-6 py-24 bg-white m-10">
+      <div className="calendar-container">
+        <Calendar tileContent={tileContent} />
+      </div>
+    </div>  
   );
 };
 
